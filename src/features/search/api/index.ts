@@ -1,12 +1,10 @@
 import { AxiosResponse } from 'axios';
 
 import apiService from '../../../api';
-import { ForksRequest } from './entities';
-import { FORKS } from './constants';
+import { Repo } from './entities';
 
 export const getForks = async (
-  forksRequest: ForksRequest,
-): Promise<AxiosResponse<undefined>> => {
-  // ^-- fixme
-  return await apiService.get(FORKS(forksRequest));
+  userRepo: string,
+): Promise<AxiosResponse<Repo[]>> => {
+  return await apiService.get(userRepo);
 };

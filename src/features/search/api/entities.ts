@@ -1,4 +1,6 @@
-export interface ForksRequest {
-  username: string;
-  repo: string;
+export interface Repo {
+  name: string;
+  owner: {
+    login: string;
+  };
 }

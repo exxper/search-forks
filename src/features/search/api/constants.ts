@@ -1,4 +1,1 @@
-import { ForksRequest } from './entities';
-
-export const FORKS = (data: ForksRequest): string =>
-  `${data.username}/${data.repo}`;
+export const FORKS = (userRepo: string): string => `/${userRepo}/forks`;
