@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { BASE_URL, GITHUB_TOKEN } from "./constants";
+import { BASE_URL, GITHUB_TOKEN } from './constants';
 
 const apiService = axios.create({
   baseURL: `${BASE_URL}`,

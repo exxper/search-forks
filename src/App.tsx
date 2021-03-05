@@ -1,9 +1,20 @@
-import React from "react";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import "./App.css";
+import Navigation from './navigation';
+import store from './store';
 
-function App() {
-  return <div className="App"></div>;
-}
+const App: React.FC = () => {
+  return (
+    <React.StrictMode>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Navigation />
+        </Provider>
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+};
 
 export default App;

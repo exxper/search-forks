@@ -1,3 +1,4 @@
 export const ROUTE_PATHS = {
-  MAIN: "/main",
+  SEARCH: '/search',
+  TABLE: '/table',
 };
