@@ -10,6 +10,7 @@ interface WrapperProps {
 export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex: 1;
+  max-height: 42px;
   border-style: solid;
   border-radius: 20px;
   border-width: 1px;
@@ -40,6 +41,9 @@ export const Input = styled.input`
   text-overflow: ellipsis;
   &:focus {
     cursor: auto;
+  }
+  &::placeholder {
+    color: ${colors.grey1};
   }
   transition: all 0.2s ease;
 `;
