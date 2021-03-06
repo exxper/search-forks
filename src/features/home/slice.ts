@@ -4,20 +4,15 @@ import { State } from './entities';
 
 export const initialState: State = {
   input: '',
-  pending: false,
-  error: '',
 };
 
 const slice = createSlice({
-  name: 'search',
+  name: 'home',
   initialState,
   reducers: {
-    getForksPending(state) {
-      state.pending = true;
-      state.error = '';
+    setInput(state, action: PayloadAction<string>) {
+      state.input = action.payload;
     },
-    getForksSuccess(state, action) {},
-    getForksFailure() {},
   },
 });
 

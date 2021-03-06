@@ -1,7 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { searchSlice } from '../features/search';
+import { homeSlice } from '../features/home';
+import { tableSlice } from '../features/table';
 
 export default combineReducers({
-  search: searchSlice,
+  home: homeSlice,
+  table: tableSlice,
 });
