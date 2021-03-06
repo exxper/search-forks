@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import SearchInput from '../../../components/SearchInput';
+import Spinner from '../../../components/Spinner';
 import { ROUTE_PATHS } from '../../../navigation/constants';
 
 import { Wrapper, Content } from './styles';
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
             history.push(`${ROUTE_PATHS.TABLE}?page=1&repository=${value}`);
           }}
         />
+        <Spinner />
       </Content>
     </Wrapper>
   );
