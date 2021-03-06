@@ -1,11 +1,11 @@
 import { AxiosResponse } from 'axios';
 
 import apiService from '../../../api';
-import { RepoResponse } from './entities';
+import { ForksRequest, RepoResponse } from './entities';
 import { FORKS } from './constants';
 
 export const getForks = async (
-  userRepo: string,
+  data: ForksRequest,
 ): Promise<AxiosResponse<RepoResponse[]>> => {
-  return await apiService.get(FORKS(userRepo));
+  return await apiService.get(FORKS(data));
 };

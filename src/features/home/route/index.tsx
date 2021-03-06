@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import SearchInput from '../../../components/SearchInput';
 import { ROUTE_PATHS } from '../../../navigation/constants';
-import { getForksAction } from '../../table/thunks';
 
 import { Wrapper, Content } from './styles';
 
@@ -16,8 +15,7 @@ const Home: React.FC = () => {
       <Content>
         <SearchInput
           onSearch={(value) => {
-            dispatch(getForksAction(value));
-            history.push(`${ROUTE_PATHS.TABLE}`);
+            history.push(`${ROUTE_PATHS.TABLE}?page=1&repository=${value}`);
           }}
         />
       </Content>

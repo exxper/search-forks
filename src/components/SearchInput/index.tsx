@@ -8,7 +8,7 @@ interface Props {
 
 const SearchInput: React.FC<Props> = ({ onSearch }) => {
   const [focus, setFocus] = useState(false);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('facebook/create-react-app');
 
   const searchHandler = () => {
     onSearch(value);

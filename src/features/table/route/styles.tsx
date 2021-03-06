@@ -16,10 +16,16 @@ export const TableWrapper = styled.div`
 
 export const Row = styled.div<{ isTitle?: boolean }>`
   display: flex;
-  flex: 1;
   flex-direction: row;
-  min-height: 35px;
+  padding: ${metrics.spacing}px;
   font-weight: ${({ isTitle = false }) => (isTitle ? 'bold' : 'normal')};
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
 `;
 
 export const Cell = styled.div<{ size?: number; left?: boolean }>`
@@ -36,4 +42,15 @@ export const Link = styled.a`
   color: ${colors.shuttleGray};
   text-decoration: underline;
   width: 300px;
+`;
+
+export const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: ${metrics.spacing * 3}px;
+`;
+
+export const PageNumber = styled.span`
+  margin: 0 ${metrics.spacing * 0.5}px;
 `;

@@ -1803,6 +1803,11 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
+"@types/parse-link-header@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/parse-link-header/-/parse-link-header-1.0.0.tgz#69f059e40a0fa93dc2e095d4142395ae6adc5d7a"
+  integrity sha512-fCA3btjE7QFeRLfcD0Sjg+6/CnmC66HpMBoRfRzd2raTaWMJV21CCZ0LO8MOqf8onl5n0EPfjq4zDhbyX8SVwA==
+
 "@types/prettier@^2.0.0":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.2.1.tgz#374e31645d58cb18a07b3ecd8e9dede4deb2cccd"
@@ -1817,6 +1822,11 @@
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
+
+"@types/qs@^6.9.5":
+  version "6.9.5"
+  resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.5.tgz#434711bdd49eb5ee69d90c1d67c354a9a8ecb18b"
+  integrity sha512-/JHkVHtx/REVG0VVToGRGH2+23hsYLHdyG+GrvoUGlGAd0ErauXDyvHtRI/7H7mzLm+tBCKA7pfcpkQ1lf58iQ==
 
 "@types/react-dom@^16.9.0":
   version "16.9.11"
@@ -8073,6 +8083,13 @@ parse-json@^5.0.0:
     json-parse-even-better-errors "^2.3.0"
     lines-and-columns "^1.1.6"
 
+parse-link-header@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/parse-link-header/-/parse-link-header-1.0.1.tgz#bedfe0d2118aeb84be75e7b025419ec8a61140a7"
+  integrity sha1-vt/g0hGK64S+deewJUGeyKYRQKc=
+  dependencies:
+    xtend "~4.0.1"
+
 parse5@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
@@ -9108,6 +9125,11 @@ qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+
+qs@^6.9.6:
+  version "6.9.6"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.6.tgz#26ed3c8243a431b2924aca84cc90471f35d5a0ee"
+  integrity sha512-TIRk4aqYLNoJUbd+g2lEdz5kLWIuTMRagAXxl78Q0RiVjAOugHmeKNGdd3cwo/ktpf9aL9epCfFqWDEKysUlLQ==
 
 qs@~6.5.2:
   version "6.5.2"
