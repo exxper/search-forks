@@ -1,1 +1,1 @@
-export const FORKS = (userRepo: string): string => `/${userRepo}/forks`;
+export const FORKS = (userRepo: string): string => `repos/${userRepo}/forks`;

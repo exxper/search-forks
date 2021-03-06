@@ -8,7 +8,7 @@ import { ROUTE_PATHS } from './constants';
 const Navigation: React.FC = () => {
   return (
     <Switch>
-      <Route path={ROUTE_PATHS.HOME}>
+      <Route exact path={ROUTE_PATHS.HOME}>
         <Home />
       </Route>
       <Route path={ROUTE_PATHS.TABLE}>
