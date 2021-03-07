@@ -86,7 +86,7 @@ const Table: React.FC = () => {
         {!!first && prev !== first && (
           <React.Fragment>
             <PageNumber onClick={changePageHandler(first)}>{first}</PageNumber>
-            {'...'}
+            {prev - 1 !== first ? '...' : ''}
           </React.Fragment>
         )}
         {!!prev && (
@@ -98,7 +98,7 @@ const Table: React.FC = () => {
         )}
         {!!last && next !== last && (
           <React.Fragment>
-            {'...'}
+            {next + 1 !== last ? '...' : ''}
             <PageNumber onClick={changePageHandler(last)}>{last}</PageNumber>
           </React.Fragment>
         )}
