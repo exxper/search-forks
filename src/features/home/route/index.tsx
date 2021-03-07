@@ -1,25 +1,13 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import SearchInput from '../../../components/SearchInput';
-import Spinner from '../../../components/Spinner';
-import { ROUTE_PATHS } from '../../../navigation/constants';
+import React from 'react';
 
+import SearchInput from '../../../components/SearchInput';
 import { Wrapper, Content } from './styles';
 
 const Home: React.FC = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
-
   return (
     <Wrapper>
       <Content>
-        <SearchInput
-          onSearch={(value) => {
-            history.push(`${ROUTE_PATHS.TABLE}?page=1&repository=${value}`);
-          }}
-        />
-        <Spinner />
+        <SearchInput />
       </Content>
     </Wrapper>
   );

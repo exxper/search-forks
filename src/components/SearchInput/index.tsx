@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 
+import { ROUTE_PATHS } from '../../navigation/constants';
 import { Wrapper, Input, SearchIcon } from './styles';
 
-interface Props {
-  onSearch: (value: string) => void;
-}
-
-const SearchInput: React.FC<Props> = ({ onSearch }) => {
+const SearchInput: React.FC = () => {
+  const history = useHistory();
   const [focus, setFocus] = useState(false);
   const [value, setValue] = useState('facebook/create-react-app');
 
   const searchHandler = () => {
-    onSearch(value);
+    history.push(`${ROUTE_PATHS.TABLE}?page=1&repository=${value}`);
   };
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

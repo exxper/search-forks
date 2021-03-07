@@ -5,6 +5,7 @@ import { colors, metrics } from '../../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   height: 100%;
 `;
 
@@ -26,8 +27,9 @@ export const Row = styled.div<{ isTitle?: boolean }>`
 
 export const ContentWrapper = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 260px);
   overflow-y: auto;
 `;
 
@@ -80,4 +82,16 @@ export const PageNumber = styled.span<{ current?: boolean }>`
   border-bottom: ${({ current }) => (current ? '1px solid black' : 'none')};
   margin: 0 ${metrics.spacing * 0.5}px;
   cursor: pointer;
+`;
+
+export const SearchWrapper = styled.div`
+  padding: ${metrics.spacing}px ${metrics.spacing * 2}px 0
+    ${metrics.spacing * 2}px;
+`;
+
+export const SpinnerWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;

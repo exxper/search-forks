@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import qs from 'qs';
 
+import Spinner from '../../../components/Spinner';
+import SearchInput from '../../../components/SearchInput';
 import { ROUTE_PATHS } from '../../../navigation/constants';
 import { RootState } from '../../../store/entities';
 import { RepoResponse } from '../api/entities';
@@ -20,6 +22,8 @@ import {
   PageNumber,
   PageArrow,
   FavIcon,
+  SearchWrapper,
+  SpinnerWrapper,
 } from './styles';
 
 const Table: React.FC = () => {
@@ -27,7 +31,7 @@ const Table: React.FC = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { home, table } = useSelector<RootState, RootState>((state) => state);
-  const { forks, pageInfo, favorites } = table;
+  const { forks, pageInfo, favorites, pending } = table;
 
   const changePageHandler = (newPage: number) => () => {
     history.push(
@@ -128,6 +132,9 @@ const Table: React.FC = () => {
 
   return (
     <Wrapper>
+      <SearchWrapper>
+        <SearchInput />
+      </SearchWrapper>
       <TableWrapper>
         <Row isTitle>
           <Cell left size={2}>
@@ -138,7 +145,15 @@ const Table: React.FC = () => {
           <Cell size={2}>Link</Cell>
           <Cell>Favorite</Cell>
         </Row>
-        <ContentWrapper>{forks.map(renderRow)}</ContentWrapper>
+        <ContentWrapper>
+          {pending ? (
+            <SpinnerWrapper>
+              <Spinner />
+            </SpinnerWrapper>
+          ) : (
+            forks.map(renderRow)
+          )}
+        </ContentWrapper>
         {renderPages()}
       </TableWrapper>
     </Wrapper>
