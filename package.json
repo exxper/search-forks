@@ -12,6 +12,7 @@
     "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^5.1.7",
     "@typescript-eslint/parser": "^4.8.1",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
     "axios": "^0.21.1",
     "parse-link-header": "^1.0.1",
     "qs": "^6.9.6",
@@ -47,7 +48,6 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
-    "@typescript-eslint/eslint-plugin": "^4.8.1",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-prettier": "^6.15.0",
