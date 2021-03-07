@@ -20,6 +20,8 @@ export const Row = styled.div<{ isTitle?: boolean }>`
   flex-direction: row;
   padding: ${metrics.spacing}px;
   font-weight: ${({ isTitle = false }) => (isTitle ? 'bold' : 'normal')};
+  border-bottom: ${({ isTitle = false }) =>
+    isTitle ? `1px solid ${colors.black4}` : 'none'};
 `;
 
 export const ContentWrapper = styled.div`
