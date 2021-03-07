@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { metrics } from '../../../styles';
+import { colors, metrics } from '../../../styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -10,5 +10,18 @@ export const Wrapper = styled.div`
 export const Content = styled.div``;
 
 export const Title = styled.div`
-  font-size: ${metrics.fontSize.large}px;
+  display: flex;
+  color: ${colors.blue1};
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+`;
+
+export const Subtitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${colors.blue1};
+  margin-bottom: ${metrics.spacing}px;
+  font-size: 28px;
 `;

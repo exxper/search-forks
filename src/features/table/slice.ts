@@ -16,6 +16,7 @@ const slice = createSlice({
   reducers: {
     getForksPending(state) {
       state.pending = true;
+      state.forks = [];
       state.error = '';
     },
     getForksSuccess(state, action: PayloadAction<ForksSuccess>) {

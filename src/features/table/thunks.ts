@@ -13,6 +13,8 @@ export const getForksAction = (forksRequest: ForksRequest): AppThunk => async (
   try {
     dispatch(actions.getForksPending());
 
+    dispatch(homeActions.setInput(forksRequest.fullName));
+
     const { data, headers } = await getForks(forksRequest);
     const link = parse(headers.link);
 
@@ -29,8 +31,6 @@ export const getForksAction = (forksRequest: ForksRequest): AppThunk => async (
           : null,
       }),
     );
-
-    dispatch(homeActions.setInput(forksRequest.fullName));
   } catch (e) {
     dispatch(actions.getForksFailure());
     throw e;

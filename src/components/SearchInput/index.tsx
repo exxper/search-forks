@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
 import { ROUTE_PATHS } from '../../navigation/constants';
+import { RootState } from '../../store/entities';
 import { Wrapper, Input, SearchIcon } from './styles';
 
 const SearchInput: React.FC = () => {
   const history = useHistory();
+  const {
+    home: { input },
+  } = useSelector<RootState, RootState>((state) => state);
   const [focus, setFocus] = useState(false);
-  const [value, setValue] = useState('facebook/create-react-app');
+  const [value, setValue] = useState('');
+
+  useEffect(() => {
+    setValue(input);
+  }, [input]);
 
   const searchHandler = () => {
     history.push(`${ROUTE_PATHS.TABLE}?page=1&repository=${value}`);
@@ -30,7 +39,7 @@ const SearchInput: React.FC = () => {
   return (
     <Wrapper focus={focus}>
       <Input
-        placeholder="Search forks..."
+        placeholder=":Owner/:Repo"
         value={value}
         onChange={changeHandler}
         onFocus={focusHandler}
