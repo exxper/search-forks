@@ -1,8 +1,9 @@
 import parse from 'parse-link-header';
 
+import { AppThunk } from '../../store';
 import { actions as homeActions } from '../home/slice';
 import { ForksRequest } from './api/entities';
-import { AppThunk } from '../../store';
+import { SAVED_REPOS } from './constants';
 import { getForks } from './api';
 import { actions } from './slice';
 
@@ -13,16 +14,19 @@ export const getForksAction = (forksRequest: ForksRequest): AppThunk => async (
     dispatch(actions.getForksPending());
 
     const { data, headers } = await getForks(forksRequest);
-    const link = parse(headers.link)!;
+    const link = parse(headers.link);
 
     dispatch(
       actions.getForksSuccess({
         forks: data,
-        pageInfo: {
-          next: +link.next?.page,
-          prev: +link.prev?.page,
-          last: +link.last?.page,
-        },
+        pageInfo: link
+          ? {
+              first: +link.first?.page,
+              prev: +link.prev?.page,
+              next: +link.next?.page,
+              last: +link.last?.page,
+            }
+          : null,
       }),
     );
 
@@ -31,4 +35,23 @@ export const getForksAction = (forksRequest: ForksRequest): AppThunk => async (
     dispatch(actions.getForksFailure());
     throw e;
   }
+};
+
+export const toggleFavoriteAction = (id: number): AppThunk => (dispatch) => {
+  try {
+    const savedRepos = JSON.parse(
+      localStorage.getItem(SAVED_REPOS) || '[]',
+    ) as number[];
+    const isFavorite = savedRepos.includes(id);
+    let nextRepos = [];
+
+    if (isFavorite) {
+      nextRepos = savedRepos.filter((repoId) => repoId !== id);
+    } else {
+      nextRepos = [...savedRepos, id];
+    }
+
+    localStorage.setItem(SAVED_REPOS, JSON.stringify(nextRepos));
+    dispatch(actions.setFavorites(nextRepos));
+  } catch (e) {}
 };

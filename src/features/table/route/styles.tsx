@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { HiOutlineChevronLeft, HiOutlineHeart } from 'react-icons/hi';
 
 import { colors, metrics } from '../../../styles';
 
@@ -44,13 +45,37 @@ export const Link = styled.a`
   width: 300px;
 `;
 
+export const FavIcon = styled(HiOutlineHeart)<{ $saved: boolean }>`
+  cursor: pointer;
+  color: ${colors.danger};
+  fill: ${({ $saved }) => ($saved ? colors.danger : colors.none)};
+  transition: all 0.2s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   margin-top: ${metrics.spacing * 3}px;
+  color: ${colors.black4};
+  font-size: ${metrics.fontSize.medium}px;
+  user-select: none;
 `;
 
-export const PageNumber = styled.span`
+export const PageArrow = styled(HiOutlineChevronLeft)<{ $isRight?: boolean }>`
+  transform: rotate(${({ $isRight }) => ($isRight ? '180deg' : 0)});
+  cursor: pointer;
+`;
+
+export const PageNumber = styled.span<{ current?: boolean }>`
+  border-bottom: ${({ current }) => (current ? '1px solid black' : 'none')};
   margin: 0 ${metrics.spacing * 0.5}px;
+  cursor: pointer;
 `;

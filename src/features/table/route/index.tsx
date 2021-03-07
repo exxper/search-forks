@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import qs from 'qs';
 
+import { ROUTE_PATHS } from '../../../navigation/constants';
 import { RootState } from '../../../store/entities';
-import { getForksAction } from '../thunks';
+import { RepoResponse } from '../api/entities';
+import { actions } from '../slice';
+import { SAVED_REPOS } from '../constants';
+import { getForksAction, toggleFavoriteAction } from '../thunks';
 import {
   Wrapper,
   TableWrapper,
@@ -14,13 +18,90 @@ import {
   Link,
   PageWrapper,
   PageNumber,
+  PageArrow,
+  FavIcon,
 } from './styles';
 
 const Table: React.FC = () => {
-  const dispatch = useDispatch();
-  const { table } = useSelector<RootState, RootState>((state) => state);
-  const { forks, pageInfo } = table;
+  const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { home, table } = useSelector<RootState, RootState>((state) => state);
+  const { forks, pageInfo, favorites } = table;
+
+  const changePageHandler = (newPage: number) => () => {
+    history.push(
+      `${ROUTE_PATHS.TABLE}?page=${newPage}&repository=${home.input}`,
+    );
+  };
+
+  const toggleFavorite = (id: number) => () => {
+    dispatch(toggleFavoriteAction(id));
+  };
+
+  const renderRow = (repo: RepoResponse) => {
+    const {
+      id,
+      full_name,
+      owner: { login },
+      stargazers_count,
+      html_url,
+    } = repo;
+    const isFavorite = favorites.includes(id);
+
+    return (
+      <Row key={id}>
+        <Cell left size={2}>
+          {full_name}
+        </Cell>
+        <Cell>{login}</Cell>
+        <Cell>{stargazers_count}</Cell>
+        <Cell size={2}>
+          <Link href={html_url} target="_blank">
+            {html_url}
+          </Link>
+        </Cell>
+        <Cell>
+          <FavIcon $saved={isFavorite} onClick={toggleFavorite(id)} />
+        </Cell>
+      </Row>
+    );
+  };
+
+  const renderPages = () => {
+    if (!pageInfo) {
+      return;
+    }
+
+    const { first, prev, next, last } = pageInfo;
+    const currentPage = next ? next - 1 : prev + 1;
+
+    return (
+      <PageWrapper>
+        {!!prev && <PageArrow onClick={changePageHandler(prev)} />}
+        {!!first && prev !== first && (
+          <React.Fragment>
+            <PageNumber onClick={changePageHandler(first)}>{first}</PageNumber>
+            {'...'}
+          </React.Fragment>
+        )}
+        {!!prev && (
+          <PageNumber onClick={changePageHandler(prev)}>{prev}</PageNumber>
+        )}
+        <PageNumber current>{currentPage}</PageNumber>
+        {!!next && (
+          <PageNumber onClick={changePageHandler(next)}>{next}</PageNumber>
+        )}
+        {!!last && next !== last && (
+          <React.Fragment>
+            {'...'}
+            <PageNumber onClick={changePageHandler(last)}>{last}</PageNumber>
+          </React.Fragment>
+        )}
+        {!!next && <PageArrow $isRight onClick={changePageHandler(next)} />}
+      </PageWrapper>
+    );
+  };
 
   useEffect(() => {
     const { page, repository } = qs.parse(location.search, {
@@ -35,6 +116,14 @@ const Table: React.FC = () => {
         }),
       );
     }
+  }, [location]);
+
+  useEffect(() => {
+    const savedRepos = JSON.parse(
+      localStorage.getItem(SAVED_REPOS) || '[]',
+    ) as number[];
+
+    dispatch(actions.setFavorites(savedRepos));
   }, []);
 
   return (
@@ -49,30 +138,8 @@ const Table: React.FC = () => {
           <Cell size={2}>Link</Cell>
           <Cell>Favorite</Cell>
         </Row>
-        <ContentWrapper>
-          {forks.map((it) => {
-            return (
-              <Row key={it.id}>
-                <Cell left size={2}>
-                  {it.full_name}
-                </Cell>
-                <Cell>{it.owner.login}</Cell>
-                <Cell>{it.stargazers_count}</Cell>
-                <Cell size={2}>
-                  <Link href={it.html_url} target="_blank">
-                    {it.html_url}
-                  </Link>
-                </Cell>
-                <Cell>{'<3'}</Cell>
-              </Row>
-            );
-          })}
-        </ContentWrapper>
-        <PageWrapper>
-          <div>{'<'}</div>
-          <PageNumber>{pageInfo.next - 1}</PageNumber>
-          <div>{'>'}</div>
-        </PageWrapper>
+        <ContentWrapper>{forks.map(renderRow)}</ContentWrapper>
+        {renderPages()}
       </TableWrapper>
     </Wrapper>
   );

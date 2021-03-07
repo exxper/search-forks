@@ -1,2 +1,2 @@
 export const BASE_URL = 'https://api.github.com';
-export const GITHUB_TOKEN = 'cf674a934348b15a1635249942f6a6d126e8c8af';
+export const GITHUB_TOKEN = '808b04995a21d13e6e161113c9d84e4f22157a2a';

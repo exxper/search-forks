@@ -2,18 +2,20 @@ import { RepoResponse } from './api/entities';
 
 export interface State {
   forks: RepoResponse[];
-  pageInfo: PageInfo;
+  favorites: number[];
+  pageInfo: PageInfo | null;
   pending: boolean;
   error: string;
 }
 
 export interface ForksSuccess {
   forks: RepoResponse[];
-  pageInfo: PageInfo;
+  pageInfo: PageInfo | null;
 }
 
 export interface PageInfo {
-  next: number;
+  first: number;
   prev: number;
+  next: number;
   last: number;
 }

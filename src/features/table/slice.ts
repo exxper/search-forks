@@ -4,11 +4,8 @@ import { ForksSuccess, State } from './entities';
 
 export const initialState: State = {
   forks: [],
-  pageInfo: {
-    next: 0,
-    prev: 0,
-    last: 0,
-  },
+  favorites: [],
+  pageInfo: null,
   pending: false,
   error: '',
 };
@@ -32,6 +29,9 @@ const slice = createSlice({
     getForksFailure(state) {
       state.pending = false;
       state.error = 'Error has occurred';
+    },
+    setFavorites(state, action: PayloadAction<number[]>) {
+      state.favorites = action.payload;
     },
   },
 });
