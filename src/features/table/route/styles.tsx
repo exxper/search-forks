@@ -38,6 +38,9 @@ export const Cell = styled.div<{ size?: number; left?: boolean }>`
   flex: ${({ size = 1 }) => size};
   justify-content: ${({ left = false }) => (left ? 'start' : 'center')};
   align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Link = styled.a`
