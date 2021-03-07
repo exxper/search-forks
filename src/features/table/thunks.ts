@@ -37,18 +37,21 @@ export const getForksAction = (forksRequest: ForksRequest): AppThunk => async (
   }
 };
 
-export const toggleFavoriteAction = (id: number): AppThunk => (dispatch) => {
+export const toggleFavoriteAction = (id: number): AppThunk => (
+  dispatch,
+  getState,
+) => {
   try {
-    const savedRepos = JSON.parse(
-      localStorage.getItem(SAVED_REPOS) || '[]',
-    ) as number[];
-    const isFavorite = savedRepos.includes(id);
+    const {
+      table: { favorites },
+    } = getState();
+    const isFavorite = favorites.includes(id);
     let nextRepos = [];
 
     if (isFavorite) {
-      nextRepos = savedRepos.filter((repoId) => repoId !== id);
+      nextRepos = favorites.filter((repoId) => repoId !== id);
     } else {
-      nextRepos = [...savedRepos, id];
+      nextRepos = [...favorites, id];
     }
 
     localStorage.setItem(SAVED_REPOS, JSON.stringify(nextRepos));
